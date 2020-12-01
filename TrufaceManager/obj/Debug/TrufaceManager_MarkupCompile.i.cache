@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Lenovo\source\repos\NewTf\TrufaceManager\App.xaml
-8-1238529406
+9-332979422
 
-31-1250843931
+3667495450
 842110923361
-MainWindow.xaml;Themes\Generic.xaml;View\AddJobPositionWindow.xaml;View\AddDepartmentWindow.xaml;View\AddEmployeeWindow.xaml;View\AddUserWindow.xaml;View\LoginWindow.xaml;View\ProfileWindow.xaml;
+MainWindow.xaml;Themes\Generic.xaml;View\AddJobPositionWindow.xaml;View\AddDepartmentWindow.xaml;View\AddEmployeeWindow.xaml;View\AddUserWindow.xaml;View\EmployeeListWindow.xaml;View\LoginWindow.xaml;View\ProfileWindow.xaml;
 
 False
 

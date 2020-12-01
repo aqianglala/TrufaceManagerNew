@@ -24,6 +24,7 @@ namespace TrufaceManager.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
+
         public MainViewModel()
         {
             AddEmployeeCommand = new RelayCommand(AddEmployee);

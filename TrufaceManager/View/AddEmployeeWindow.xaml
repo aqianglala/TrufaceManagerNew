@@ -11,6 +11,9 @@
     <local:MyWindow.Resources>
         <local:SelectedDateConverter x:Key="selectedDateConverter"/>
         <local:IsEnabledConverter x:Key="isEnabledConverter"/>
+        <local:ValidTimeIsEnabledConverter x:Key="validTimeIsEnabledConverter"/>
+        <local:ValidTimeStartConverter x:Key="validTimeStartConverter"/>
+        <local:ValidTimeEndConverter x:Key="validTimeEndConverter"/>
         <local:IsEnabled4ClearBtnConverter x:Key="isEnabled4ClearBtnConverter"/>
         <Style TargetType="Span">
             <Setter Property="Foreground" Value="Red"/>
@@ -69,14 +72,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock>Job Position<Span>*</Span></TextBlock>
-                <ComboBox Grid.Column="1" x:Name="CbJobPosition" ItemsSource="{Binding JobPositions}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Model.JobPositionId}"/>
+                <ComboBox Grid.Column="1" x:Name="CbJobPosition" ItemsSource="{Binding JobPositions}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Model.JobPosition}"/>
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
                     <TextBlock>Gender<Span>*</Span></TextBlock>
                     <ComboBox x:Name="CbGender" ItemsSource="{Binding Genders}" SelectedValue="{Binding Model.Gender}"/>
                 </StackPanel>
 
                 <TextBlock Grid.Row="1">Department<Span>*</Span></TextBlock>
-                <ComboBox Grid.Row="1" Grid.Column="1" Name="CbDepartment" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Model.DepartmentId}"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" Name="CbDepartment" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Model.Department}"/>
                 <GroupBox Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Header="Access Limit">
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
@@ -92,7 +95,7 @@
                                     </Style>
                                 </RadioButton.Style>
                             </RadioButton>
-                            <xctk:IntegerUpDown x:Name="IudAccessCount" Minimum="1" Maximum="100" Value="{Binding Model.AccessCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <xctk:IntegerUpDown x:Name="IudAccessCount" Minimum="1" Maximum="100" Value="{Binding Model.AccessCount}">
                                 <xctk:IntegerUpDown.Style>
                                     <Style TargetType="xctk:IntegerUpDown">
                                         <Setter Property="IsEnabled" Value="False"/>
@@ -128,7 +131,119 @@
                 </StackPanel>
             </Grid>
             <GroupBox Grid.Row="2" Header="Access Permisstions">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="CheckBox">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="4,0"/>
+                        </Style>
+                        <Style TargetType="xctk:DateTimeUpDown">
+                            <Setter Property="Format" Value="Custom"/>
+                            <Setter Property="FormatString" Value="hh:mm tt"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Minimum" Value="{x:Static local:AddEmployeeViewModel.TodayStart}"/>
+                            <Setter Property="Maximum" Value="{x:Static local:AddEmployeeViewModel.TodayEnd}"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Weekdays">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="Cb1" IsChecked="{Binding Model.ValidTime1,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=1}"/>
+                            <TextBlock Grid.Column="1">Mon</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Column="2" x:Name="Dtud1Start" IsEnabled="{Binding ElementName=Cb1, Path=IsChecked}" Maximum="{Binding ElementName=Dtud1End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime1,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=1}"/>
+                            <TextBlock Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Column="4" x:Name="Dtud1End" IsEnabled="{Binding ElementName=Cb1, Path=IsChecked}" Minimum="{Binding ElementName=Dtud1Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime1,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=1}"/>
 
+                            <CheckBox Grid.Row="1" x:Name="Cb2" IsChecked="{Binding Model.ValidTime2,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=2}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1">Tue</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="1" Grid.Column="2" x:Name="Dtud2Start" IsEnabled="{Binding ElementName=Cb2, Path=IsChecked}" Maximum="{Binding ElementName=Dtud2End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime2,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=2}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="1" Grid.Column="4" x:Name="Dtud2End" IsEnabled="{Binding ElementName=Cb2, Path=IsChecked}" Minimum="{Binding ElementName=Dtud2Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime2,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=2}"/>
+
+                            <CheckBox Grid.Row="2" x:Name="Cb3" IsChecked="{Binding Model.ValidTime3,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=3}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1">Wed</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="2" Grid.Column="2" x:Name="Dtud3Start" IsEnabled="{Binding ElementName=Cb3, Path=IsChecked}" Maximum="{Binding ElementName=Dtud3End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime3,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=3}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="2" Grid.Column="4" x:Name="Dtud3End" IsEnabled="{Binding ElementName=Cb3, Path=IsChecked}" Minimum="{Binding ElementName=Dtud3Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime3,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=3}"/>
+
+                            <CheckBox Grid.Row="3" x:Name="Cb4" IsChecked="{Binding Model.ValidTime4,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=4}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1">Thu</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="3" Grid.Column="2" x:Name="Dtud4Start" IsEnabled="{Binding ElementName=Cb4, Path=IsChecked}" Maximum="{Binding ElementName=Dtud4End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime4,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=4}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="3" Grid.Column="4" x:Name="Dtud4End" IsEnabled="{Binding ElementName=Cb4, Path=IsChecked}" Minimum="{Binding ElementName=Dtud4Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime4,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=4}"/>
+
+                            <CheckBox Grid.Row="4" x:Name="Cb5" IsChecked="{Binding Model.ValidTime5,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=5}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1">Fri</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="4" Grid.Column="2" x:Name="Dtud5Start" IsEnabled="{Binding ElementName=Cb5, Path=IsChecked}" Maximum="{Binding ElementName=Dtud5End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime5,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=5}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="4" Grid.Column="4" x:Name="Dtud5End" IsEnabled="{Binding ElementName=Cb5, Path=IsChecked}" Minimum="{Binding ElementName=Dtud5Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime5,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=5}"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Weekdays">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="Cb6" IsChecked="{Binding Model.ValidTime6,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=6}"/>
+                            <TextBlock Grid.Column="1">Mon</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Column="2" x:Name="Dtud6Start" IsEnabled="{Binding ElementName=Cb6, Path=IsChecked}" Maximum="{Binding ElementName=Dtud6End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime6,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=6}"/>
+                            <TextBlock Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Column="4" x:Name="Dtud6End" IsEnabled="{Binding ElementName=Cb6, Path=IsChecked}" Minimum="{Binding ElementName=Dtud6Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime6,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=6}"/>
+
+                            <CheckBox Grid.Row="1" x:Name="Cb7" IsChecked="{Binding Model.ValidTime7,Converter={StaticResource ResourceKey=validTimeIsEnabledConverter},ConverterParameter=7}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1">Tue</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="1" Grid.Column="2" x:Name="Dtud7Start" IsEnabled="{Binding ElementName=Cb7, Path=IsChecked}" Maximum="{Binding ElementName=Dtud7End,Path=Value}"
+                                                 Value="{Binding Model.ValidTime7,Converter={StaticResource ResourceKey=validTimeStartConverter},ConverterParameter=7}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="3">~</TextBlock>
+                            <xctk:DateTimeUpDown Grid.Row="1" Grid.Column="4" x:Name="Dtud7End" IsEnabled="{Binding ElementName=Cb7, Path=IsChecked}" Minimum="{Binding ElementName=Dtud7Start,Path=Value}"
+                                                 Value="{Binding Model.ValidTime7,Converter={StaticResource ResourceKey=validTimeEndConverter},ConverterParameter=7}"/>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
             </GroupBox>
         </Grid>
         <Grid Grid.Column="1">

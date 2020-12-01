@@ -41,7 +41,5 @@ namespace TrufaceManager
             get { return createTime; }
             set { createTime = value; RaisePropertyChanged(); }
         }
-
-        public ICollection<Employee> Employee { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace TrufaceManager.ViewModel
     public class ProfileViewModel : ViewModelBase
     {
         private readonly ORMContext db;
-        
+
         public ProfileViewModel()
         {
             db = new ORMContext();
@@ -65,7 +65,7 @@ namespace TrufaceManager.ViewModel
             var r = window.ShowDialog();
             if (r.Value)
             {
-                string createBy =((App)App.Current).CurrentUser.Name;
+                string createBy = ((App)App.Current).CurrentUser.Name;
                 department.CreateBy = createBy;
                 department.CreateTime = DateTime.Now.ToString();
                 db.Departments.Add(department);
@@ -77,7 +77,7 @@ namespace TrufaceManager.ViewModel
         {
             Department department = new Department()
             {
-                DepartmentId = selectedDepartment.DepartmentId,
+                Id = selectedDepartment.Id,
                 Name = selectedDepartment.Name,
                 CreateBy = selectedDepartment.CreateBy,
                 CreateTime = selectedDepartment.CreateTime
@@ -86,7 +86,7 @@ namespace TrufaceManager.ViewModel
             var r = window.ShowDialog();
             if (r.Value)
             {
-                Department item = db.Departments.FirstOrDefault(i => i.DepartmentId == department.DepartmentId);
+                Department item = db.Departments.FirstOrDefault(i => i.Id == department.Id);
                 item.Name = department.Name;
                 db.SaveChanges();
             }
@@ -97,8 +97,9 @@ namespace TrufaceManager.ViewModel
             var r = MessageBox.Show("确认删除?", "操作提示", MessageBoxButton.OK, MessageBoxImage.Question);
             if (r == MessageBoxResult.OK)
             {
-                Department item = db.Departments.FirstOrDefault(i => i.DepartmentId == selectedDepartment.DepartmentId);
+                Department item = db.Departments.FirstOrDefault(i => i.Id == selectedDepartment.Id);
                 db.Departments.Remove(item);
+                db.Employees.RemoveRange(db.Employees.Where(i => i.Department == item.Name));
                 db.SaveChanges();
             }
         }
@@ -168,6 +169,7 @@ namespace TrufaceManager.ViewModel
             {
                 JobPosition item = db.JobPositions.FirstOrDefault(i => i.Id == selectedJobPosition.Id);
                 db.JobPositions.Remove(item);
+                db.Employees.RemoveRange(db.Employees.Where(i => i.JobPosition == item.Name));
                 db.SaveChanges();
             }
         }
@@ -257,7 +259,8 @@ namespace TrufaceManager.ViewModel
 
         public RelayCommand Disable
         {
-            get {
+            get
+            {
                 if (disable == null)
                 {
                     disable = new RelayCommand(() =>

@@ -18,7 +18,7 @@ namespace TrufaceManager
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int DepartmentId
+        public int Id
         {
             get { return id; }
             set { id = value; }
@@ -41,7 +41,5 @@ namespace TrufaceManager
             get { return createTime; }
             set { createTime = value; RaisePropertyChanged(); }
         }
-
-        public ICollection<Employee> Employee { get; set; }
     }
 }

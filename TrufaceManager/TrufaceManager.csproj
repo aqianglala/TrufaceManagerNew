@@ -114,6 +114,9 @@
     <Compile Include="Control\MyWindow.cs" />
     <Compile Include="Converter\IsEnabled4ClearBtnConverter.cs" />
     <Compile Include="Converter\IsEnabledConverter.cs" />
+    <Compile Include="Converter\ValidTimeEndConverter.cs" />
+    <Compile Include="Converter\ValidTimeStartConverter.cs" />
+    <Compile Include="Converter\ValidTimeIsEnabledConverter.cs" />
     <Compile Include="Converter\SelectedDateConverter.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Employee.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Util\WindowParameters.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeListViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -140,6 +144,9 @@
     </Compile>
     <Compile Include="View\AddUserWindow.xaml.cs">
       <DependentUpon>AddUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeListWindow.xaml.cs">
+      <DependentUpon>EmployeeListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -177,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -19,10 +19,13 @@ namespace TrufaceManager.View
     /// </summary>
     public partial class AddEmployeeWindow
     {
+        private Employee employee;
+
         public AddEmployeeWindow(Employee employee)
         {
-            InitializeComponent();
+            this.employee = employee;
             this.DataContext = new AddEmployeeViewModel(employee);
+            InitializeComponent();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -37,6 +40,11 @@ namespace TrufaceManager.View
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            //todo
+            if (RbUnLimited.IsChecked == true)
+            {
+                this.employee.AccessCount = -1;
+            }
             this.DialogResult = true;
         }
     }

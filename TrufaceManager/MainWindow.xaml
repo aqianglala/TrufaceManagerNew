@@ -28,8 +28,8 @@
             </MenuItem>
             <MenuItem x:Name="Registration" Header="Registration" Foreground="White" FontSize="16">
                 <MenuItem Header="Personnel Registration..." Command="{Binding AddEmployeeCommand}"/>
-                <MenuItem Header="Modify Personnel..." />
-                <MenuItem Header="Delete Personnel..." />
+                <MenuItem Header="Modify Personnel..." Click="BtnModifyEmployee_Clicked"/>
+                <MenuItem Header="Delete Personnel..." Click="BtnDeleteEmployee_Clicked"/>
                 <MenuItem Header="Batch Import..." />
                 <Separator/>
                 <MenuItem Header="Visitor Registration..." />

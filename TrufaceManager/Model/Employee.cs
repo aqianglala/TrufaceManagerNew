@@ -17,15 +17,67 @@ namespace TrufaceManager
         private string lastName;
         private string firstName;
         private string middleName;
-        private int jobPositionId;
+        private string jobPosition;
         private string gender;
-        private int departmentId;
+        private string department;
         private string validityDate;
         private string expirationDate;
         private int accessCount = -1;
         private int blacklist;
         private string faceImage;
         private string fingerImage;
+        private string validTime1 = "1,00:00=23:59";
+        private string validTime2 = "1,00:00=23:59";
+        private string validTime3 = "1,00:00=23:59";
+        private string validTime4 = "1,00:00=23:59";
+        private string validTime5 = "1,00:00=23:59";
+        private string validTime6 = "0,00:00=23:59";
+        private string validTime7 = "0,00:00=23:59";
+
+        public string ValidTime1
+        {
+            get { return validTime1; }
+            set { validTime1 = value; RaisePropertyChanged(); }
+        }
+
+
+        public string ValidTime2
+        {
+            get { return validTime2; }
+            set { validTime2 = value; RaisePropertyChanged(); }
+        }
+
+
+        public string ValidTime3
+        {
+            get { return validTime3; }
+            set { validTime3 = value; RaisePropertyChanged(); }
+        }
+
+        public string ValidTime4
+        {
+            get { return validTime4; }
+            set { validTime4 = value; RaisePropertyChanged(); }
+        }
+
+        public string ValidTime5
+        {
+            get { return validTime5; }
+            set { validTime5 = value; RaisePropertyChanged(); }
+        }
+
+        public string ValidTime6
+        {
+            get { return validTime6; }
+            set { validTime6 = value; RaisePropertyChanged(); }
+        }
+
+        public string ValidTime7
+        {
+            get { return validTime7; }
+            set { validTime7 = value; RaisePropertyChanged(); }
+        }
+
 
         public string FaceImage
         {
@@ -41,7 +93,7 @@ namespace TrufaceManager
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EmployeeId
+        public int Id
         {
             get { return id; }
             set { id = value; RaisePropertyChanged(); }
@@ -76,27 +128,24 @@ namespace TrufaceManager
             get { return middleName; }
             set { middleName = value; RaisePropertyChanged(); }
         }
-        
-        // 外键
-        public int JobPositionId
+
+        public string JobPosition
         {
-            get { return jobPositionId; }
-            set { jobPositionId = value; RaisePropertyChanged(); }
+            get { return jobPosition; }
+            set { jobPosition = value; RaisePropertyChanged(); }
         }
-        public JobPosition JobPosition { get; set; }
 
         public string Gender
         {
             get { return gender; }
             set { gender = value; RaisePropertyChanged(); }
         }
-        // 外键
-        public int DepartmentId
+
+        public string Department
         {
-            get { return departmentId; }
-            set { departmentId = value; RaisePropertyChanged(); }
+            get { return department; }
+            set { department = value; RaisePropertyChanged(); }
         }
-        public Department Department { get; set; }
 
         public string ValidityDate
         {

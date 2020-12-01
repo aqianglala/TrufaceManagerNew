@@ -33,5 +33,17 @@ namespace TrufaceManager
             base.OnClosed(e);
             Application.Current.Shutdown();
         }
+
+        private void BtnModifyEmployee_Clicked(object sender, RoutedEventArgs e)
+        {
+            EmployeeListWindow window = new EmployeeListWindow(true);
+            window.ShowDialog();
+        }
+
+        private void BtnDeleteEmployee_Clicked(object sender, RoutedEventArgs e)
+        {
+            EmployeeListWindow window = new EmployeeListWindow(false);
+            window.ShowDialog();
+        }
     }
 }

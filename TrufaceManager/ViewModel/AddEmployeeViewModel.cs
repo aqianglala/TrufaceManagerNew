@@ -9,6 +9,8 @@ namespace TrufaceManager
 {
     public class AddEmployeeViewModel:ViewModelBase
     {
+        public static DateTime TodayStart;
+        public static DateTime TodayEnd;
         private readonly ORMContext db;
         public List<JobPosition> JobPositions { get; set; }
         public List<Department> Departments { get; set; }
@@ -24,6 +26,8 @@ namespace TrufaceManager
 
         public AddEmployeeViewModel(Employee employee)
         {
+            TodayStart = DateTime.Today.Date;
+            TodayEnd = DateTime.Today.Date.AddDays(1).AddSeconds(-1);
             db = new ORMContext();
             this.employee = employee;
             JobPositions = db.JobPositions.ToList();
@@ -32,5 +36,6 @@ namespace TrufaceManager
             Genders.Add("male");
             Genders.Add("female");
         }
+
     }
 }
