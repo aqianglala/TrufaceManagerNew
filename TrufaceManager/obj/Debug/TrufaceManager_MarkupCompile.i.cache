@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Lenovo\source\repos\NewTf\TrufaceManager\obj\Debug\
+C:\Users\Administrator\source\repos\TrufaceManagerNew\TrufaceManager\obj\Debug\
 TrufaceManager
 none
 false
 DEBUG;TRACE
-C:\Users\Lenovo\source\repos\NewTf\TrufaceManager\App.xaml
-9-332979422
+C:\Users\Administrator\source\repos\TrufaceManagerNew\TrufaceManager\App.xaml
+10585773279
 
-3667495450
-842110923361
-MainWindow.xaml;Themes\Generic.xaml;View\AddJobPositionWindow.xaml;View\AddDepartmentWindow.xaml;View\AddEmployeeWindow.xaml;View\AddUserWindow.xaml;View\EmployeeListWindow.xaml;View\LoginWindow.xaml;View\ProfileWindow.xaml;
+381283688951
+8435203794
+MainWindow.xaml;Themes\Generic.xaml;View\AddJobPositionWindow.xaml;View\AddDepartmentWindow.xaml;View\AddEmployeeWindow.xaml;View\AddUserWindow.xaml;View\AddVisitorWindow.xaml;View\EmployeeListWindow.xaml;View\LoginWindow.xaml;View\ProfileWindow.xaml;
 
-False
+True
 

@@ -45,5 +45,21 @@ namespace TrufaceManager
             EmployeeListWindow window = new EmployeeListWindow(false);
             window.ShowDialog();
         }
+
+        private void BtnAddVisitor_Clicked(object sender, RoutedEventArgs e)
+        {
+            Employee employee = new Employee();
+            employee.AccessCount = 1;
+            AddVisitorWindow window = new AddVisitorWindow(employee);
+            var r = window.ShowDialog();
+            if (r.Value)
+            {
+                using (var db = new ORMContext())
+                {
+                    db.Employees.Add(employee);
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }

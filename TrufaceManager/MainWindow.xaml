@@ -32,7 +32,7 @@
                 <MenuItem Header="Delete Personnel..." Click="BtnDeleteEmployee_Clicked"/>
                 <MenuItem Header="Batch Import..." />
                 <Separator/>
-                <MenuItem Header="Visitor Registration..." />
+                <MenuItem Header="Visitor Registration..." Click="BtnAddVisitor_Clicked"/>
                 <MenuItem Header="Modify Visitor..."/>
                 <MenuItem Header="Delete Visitor..."  />
                 <Separator/>

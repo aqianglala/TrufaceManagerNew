@@ -17,6 +17,9 @@ namespace TrufaceManager
         private string lastName;
         private string firstName;
         private string middleName;
+        private string company;// visitor
+        private string positionToVisit;// visitor
+        private string purpose;// visitor
         private string jobPosition;
         private string gender;
         private string department;
@@ -127,6 +130,24 @@ namespace TrufaceManager
         {
             get { return middleName; }
             set { middleName = value; RaisePropertyChanged(); }
+        }
+
+        public string Company
+        {
+            get { return company; }
+            set { company = value; RaisePropertyChanged(); }
+        }
+
+        public string PositionToVisit
+        {
+            get { return positionToVisit; }
+            set { positionToVisit = value; RaisePropertyChanged(); }
+        }
+
+        public string Purpose
+        {
+            get { return purpose; }
+            set { purpose = value; RaisePropertyChanged(); }
         }
 
         public string JobPosition
