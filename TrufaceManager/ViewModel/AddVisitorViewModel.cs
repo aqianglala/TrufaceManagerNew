@@ -41,8 +41,11 @@ namespace TrufaceManager
             {
                 Departments = db.Departments.ToList();
             }
-            timeStart = DateTime.Today.Date;
-            timeEnd = DateTime.Today.Date.AddDays(1).AddSeconds(-1);
+            string validTime = employee.ValidTime1;
+            string[] split = validTime.Split(',');
+            timeStart = Convert.ToDateTime(split[1].Split('=')[0]);
+            timeEnd = Convert.ToDateTime(split[1].Split('=')[1]);
+
             TodayStart = DateTime.Today.Date;
             TodayEnd = DateTime.Today.Date.AddDays(1).AddSeconds(-1);
         }

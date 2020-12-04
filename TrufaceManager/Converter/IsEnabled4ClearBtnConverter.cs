@@ -12,7 +12,18 @@ namespace TrufaceManager
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            string[] inputs = Array.ConvertAll(values, x => x == null ? "" : x.ToString());
+            //string[] inputs = Array.ConvertAll(values, x => x == null ? "" : x.ToString());
+            string[] inputs = Array.ConvertAll(values, x =>
+            {
+                string str1 = x == null ? "" : x.ToString();
+                if ("False".Equals(str1))
+                {
+                    return "";
+                } else
+                {
+                    return str1;
+                }
+            });
             return inputs.Any(x => !string.IsNullOrEmpty((string)x));
         }
 

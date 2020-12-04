@@ -28,13 +28,13 @@
             </MenuItem>
             <MenuItem x:Name="Registration" Header="Registration" Foreground="White" FontSize="16">
                 <MenuItem Header="Personnel Registration..." Command="{Binding AddEmployeeCommand}"/>
-                <MenuItem Header="Modify Personnel..." Click="BtnModifyEmployee_Clicked"/>
-                <MenuItem Header="Delete Personnel..." Click="BtnDeleteEmployee_Clicked"/>
+                <MenuItem Header="Modify Personnel..." Click="BtnModifyEmployee_Click"/>
+                <MenuItem Header="Delete Personnel..." Click="BtnDeleteEmployee_Click"/>
                 <MenuItem Header="Batch Import..." />
                 <Separator/>
-                <MenuItem Header="Visitor Registration..." Click="BtnAddVisitor_Clicked"/>
-                <MenuItem Header="Modify Visitor..."/>
-                <MenuItem Header="Delete Visitor..."  />
+                <MenuItem Header="Visitor Registration..." Click="BtnAddVisitor_Click"/>
+                <MenuItem Header="Modify Visitor..." Click="BtnModifyVisitor_Click"/>
+                <MenuItem Header="Delete Visitor..." Click="BtnDeleteVisitor_Click"/>
                 <Separator/>
                 <MenuItem Header="Clear Entire Data from Device..." />
             </MenuItem>

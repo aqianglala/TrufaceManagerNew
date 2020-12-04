@@ -34,19 +34,19 @@ namespace TrufaceManager
             Application.Current.Shutdown();
         }
 
-        private void BtnModifyEmployee_Clicked(object sender, RoutedEventArgs e)
+        private void BtnModifyEmployee_Click(object sender, RoutedEventArgs e)
         {
             EmployeeListWindow window = new EmployeeListWindow(true);
             window.ShowDialog();
         }
 
-        private void BtnDeleteEmployee_Clicked(object sender, RoutedEventArgs e)
+        private void BtnDeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
             EmployeeListWindow window = new EmployeeListWindow(false);
             window.ShowDialog();
         }
 
-        private void BtnAddVisitor_Clicked(object sender, RoutedEventArgs e)
+        private void BtnAddVisitor_Click(object sender, RoutedEventArgs e)
         {
             Employee employee = new Employee();
             employee.AccessCount = 1;
@@ -60,6 +60,18 @@ namespace TrufaceManager
                     db.SaveChanges();
                 }
             }
+        }
+
+        private void BtnModifyVisitor_Click(object sender, RoutedEventArgs e)
+        {
+            VisitorListWindow window = new VisitorListWindow(true);
+            window.ShowDialog();
+        }
+
+        private void BtnDeleteVisitor_Click(object sender, RoutedEventArgs e)
+        {
+            VisitorListWindow window = new VisitorListWindow(false);
+            window.ShowDialog();
         }
     }
 }

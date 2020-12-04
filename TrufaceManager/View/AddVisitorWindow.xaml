@@ -125,13 +125,13 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox>Meeting</CheckBox>
-                    <CheckBox Grid.Column="1">Demo</CheckBox>
-                    <CheckBox Grid.Row="1">Presentation</CheckBox>
-                    <CheckBox Grid.Row="1" Grid.Column="1">Personal</CheckBox>
+                    <CheckBox x:Name="CbMeeting">Meeting</CheckBox>
+                    <CheckBox x:Name="CbDemo" Grid.Column="1">Demo</CheckBox>
+                    <CheckBox x:Name="CbPresentation" Grid.Row="1">Presentation</CheckBox>
+                    <CheckBox x:Name="CbPersonal" Grid.Row="1" Grid.Column="1">Personal</CheckBox>
                     <DockPanel Grid.Row="2" Grid.ColumnSpan="2" LastChildFill="True">
-                        <CheckBox Grid.Row="2" Margin="0,0,16,0">Others</CheckBox>
-                        <TextBox/>
+                        <CheckBox x:Name="CbOthers" Grid.Row="2" Margin="0,0,16,0">Others</CheckBox>
+                        <TextBox x:Name="TbOthers"/>
                     </DockPanel>
                 </Grid>
             </GroupBox>
@@ -171,8 +171,29 @@
                     </MultiBinding>
                 </Button.IsEnabled>
             </Button>
-            <Button Grid.Column="1">Read</Button>
-            <Button Grid.Column="2">Clear</Button>
+            <Button Grid.Column="1" Click="BtnRead_Click">Read</Button>
+            <Button Grid.Column="2">Clear
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource isEnabled4ClearBtnConverter}">
+                        <Binding Path="Text" ElementName="TbLastName"/>
+                        <Binding Path="Text" ElementName="TbFirstName"/>
+                        <Binding Path="Text" ElementName="TbCompany"/>
+                        <Binding Path="Text" ElementName="TbNumber"/>
+                        <Binding Path="Text" ElementName="TbJobPosition"/>
+                        <Binding Path="Text" ElementName="TbIcCard"/>
+                        <Binding Path="Text" ElementName="TbPositionToVisit"/>
+                        <Binding Path="Text" ElementName="CbbDepartment"/>
+                        <Binding Path="Text" ElementName="DpStart"/>
+                        <Binding Path="Text" ElementName="DpEnd"/>
+                        <Binding Path="IsChecked" ElementName="CbMeeting"/>
+                        <Binding Path="IsChecked" ElementName="CbDemo"/>
+                        <Binding Path="IsChecked" ElementName="CbPresentation"/>
+                        <Binding Path="IsChecked" ElementName="CbPersonal"/>
+                        <Binding Path="IsChecked" ElementName="CbOthers"/>
+                        <Binding Path="Text" ElementName="TbOthers"/>
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
             <Button Grid.Column="3">Close</Button>
         </Grid>
     </Grid>
